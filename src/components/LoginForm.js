@@ -12,7 +12,7 @@ function LoginForm({ setIsAuthenticated }) {
 
     try {
       const credentials = btoa(`${cnpj}:${password}`);
-      console.log("Enviando credenciais:", credentials); // Log para verificar as credenciais
+      console.log("Enviando credenciais:", credentials); // Log para depuração
 
       const response = await api.post(
         "/login",
@@ -24,10 +24,10 @@ function LoginForm({ setIsAuthenticated }) {
         }
       );
 
-      console.log("Resposta da API:", response); // Log para verificar a resposta da API
+      console.log("Resposta da API:", response); // Log para depuração
 
-      if (response.status === 200 && response.data?.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+      if (response.status === 200 && response.data?.message === "Login bem-sucedido!") {
+        // Considerando que o token não é enviado, mas o login é bem-sucedido
         setIsAuthenticated(true);
         console.log("Login bem-sucedido. Usuário autenticado.");
         navigate("/"); // Redirecionar para a página inicial
