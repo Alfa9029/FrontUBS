@@ -7,7 +7,7 @@ function ListaProf() {
   useEffect(() => {
     const fetchProfissionais = async () => {
       try {
-        const response = await api.get('/ubs');
+        const response = await api.get('/medicos'); // Ajuste a URL conforme necessário
         setProfissionais(response.data);
       } catch (error) {
         console.error('Erro ao buscar profissionais:', error);
