@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Header() {
+function Header({ isAuthenticated }) {
   const navigate = useNavigate();
-  const isAuthenticated = !!localStorage.getItem("user");
 
   const handleNavigation = (path) => {
     if (isAuthenticated) {

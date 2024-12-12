@@ -1,5 +1,5 @@
 // src/App.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import LoginForm from "./components/LoginForm";
@@ -11,16 +11,21 @@ import CreateProfessional from "./components/CreateProfessional";
 import CreateCampaign from "./components/CreateCampaign";
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem("user");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    setIsAuthenticated(!!user);
+  }, []);
 
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        <Header />
+        <Header isAuthenticated={isAuthenticated} />
         <main className="flex-grow bg-white w-full">
           <Routes>
             <Route path="/" element={<ListaUBS />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
             <Route
               path="/listar"
               element={isAuthenticated ? <ListaProf /> : <Navigate to="/login" />}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axiosConfig";
 
-function LoginForm() {
+function LoginForm({ setIsAuthenticated }) {
     const [cnpj, setCnpj] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ function LoginForm() {
 
             if (response.status === 200) {
                 localStorage.setItem("user", JSON.stringify(response.data));
+                setIsAuthenticated(true);
                 navigate("/"); // Redirecionar para a página inicial após o login
             } else {
                 alert("CNPJ ou senha incorretos!");
