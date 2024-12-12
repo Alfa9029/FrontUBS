@@ -1,9 +1,12 @@
 // src/components/ListaUBS.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function ListaUBS() {
   const navigate = useNavigate();
+  const [selectedUBS, setSelectedUBS] = useState(null);
+  const [profissionais, setProfissionais] = useState([]);
 
   // Lista de UBS com os dados para os iframes
   const ubsList = [
@@ -24,10 +27,15 @@ function ListaUBS() {
     },
   ];
 
-  const [selectedUBS, setSelectedUBS] = useState(null);
-
-  const handleSelectUBS = (ubs) => {
+  const handleSelectUBS = async (ubs) => {
     setSelectedUBS(ubs);
+    try {
+      const response = await axios.get(`https://ubs-backend-pn16.onrender.com/api/ubs/${ubs.id}/medicos`);
+      setProfissionais(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar profissionais:', error);
+      setProfissionais([]);
+    }
   };
 
   return (
@@ -61,6 +69,27 @@ function ListaUBS() {
             referrerPolicy="no-referrer-when-downgrade"
             title={`Mapa de ${selectedUBS.nome}`}
           ></iframe>
+        </div>
+      )}
+
+      {/* Lista de Profissionais */}
+      {selectedUBS && (
+        <div className="w-full flex flex-col items-center mb-6">
+          <h3 className="text-xl font-semibold mb-4">Profissionais da {selectedUBS.nome}</h3>
+          {profissionais.length > 0 ? (
+            <ul className="w-full max-w-md">
+              {profissionais.map((profissional) => (
+                <li key={profissional.id} className="p-4 border bg-white rounded-md mb-2 shadow-md">
+                  <h4 className="font-semibold">{profissional.nome}</h4>
+                  <p><strong>Especialidade:</strong> {profissional.especialidade}</p>
+                  <p><strong>Horário de Atendimento:</strong> {profissional.horario_atendimento}</p>
+                  <p><strong>Telefone:</strong> {profissional.telefone}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500">Nenhum profissional encontrado para esta UBS.</p>
+          )}
         </div>
       )}
 
