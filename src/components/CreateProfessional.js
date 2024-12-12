@@ -5,6 +5,8 @@ const CreateProfessional = () => {
   const [formData, setFormData] = useState({
     nome: '',
     especialidade: '',
+    horario_atendimento: '',
+    telefone: '',
   });
   const [ubsList, setUbsList] = useState([]);
   const [selectedUbsId, setSelectedUbsId] = useState('');
@@ -94,6 +96,42 @@ const CreateProfessional = () => {
               id="especialidade"
               name="especialidade"
               value={formData.especialidade}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          {/* Horário de Atendimento */}
+          <div>
+            <label
+              htmlFor="horario_atendimento"
+              className="block text-sm font-medium text-gray-600"
+            >
+              Horário de Atendimento
+            </label>
+            <input
+              type="text"
+              id="horario_atendimento"
+              name="horario_atendimento"
+              value={formData.horario_atendimento}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          {/* Telefone */}
+          <div>
+            <label
+              htmlFor="telefone"
+              className="block text-sm font-medium text-gray-600"
+            >
+              Telefone
+            </label>
+            <input
+              type="text"
+              id="telefone"
+              name="telefone"
+              value={formData.telefone}
               onChange={handleChange}
               required
               className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
