@@ -20,7 +20,6 @@ function App() {
         <main className="flex-grow bg-white w-full">
           <Routes>
             <Route path="/" element={<LoginForm />} />
-            <Route path="/agenda" element={<Agenda />} />
             <Route path="/listar" element={<ListaProf />} />
             <Route path="/calendario" element={<Calendario />} />
             <Route path="/ubs" element={<ListaUBS />} />
