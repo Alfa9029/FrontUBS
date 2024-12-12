@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -9,10 +9,11 @@ function Header() {
         <span className="text-white ml-2">MAPSAÚDE</span>
       </div>
       <nav className="flex space-x-4">
-        <a href="#" className="text-white">Notícias</a>
-        <a href="#" className="text-white">Encontre sua UBS</a>
-        <a href="#" className="text-white">Campanha</a>
-        <a href="#" className="text-white">PlataformaUBS</a>
+        <Link to="/" className="text-white">Home</Link>
+        <Link to="/listar" className="text-white">Lista de Profissionais</Link>
+        <Link to="/calendario" className="text-white">Calendário</Link>
+        <Link to="/createCampaign" className="text-white">Criar Campanha</Link>
+        <Link to="/createProfessional" className="text-white">Cadastrar Profissional</Link>
       </nav>
     </header>
   );
