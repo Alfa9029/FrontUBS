@@ -40,7 +40,7 @@ function ListaUBS() {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-gray-100 relative">
-      <img src="/b1.png" alt="Banner 1" className="mb-6 max-w-full h-auto max-h-32 object-contain" />
+      <img src="/b1.png" alt="Banner 1" className="mb-6 max-w-full h-auto max-h-48 object-contain" />
       <h2 className="text-2xl font-semibold mb-6">Lista de UBS</h2>
 
       {/* Botões das UBS */}
@@ -93,7 +93,7 @@ function ListaUBS() {
         </div>
       )}
 
-      <img src="/b2.jpg" alt="Banner 2" className="mt-6 max-w-full h-auto max-h-32 object-contain" />
+      <img src="/b2.jpg" alt="Banner 2" className="mt-6 max-w-full h-auto max-h-48 object-contain" />
 
       {/* Botão de Voltar */}
       <button

@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
+  const isAuthenticated = !!localStorage.getItem("user");
+
+  const handleNavigation = (path) => {
+    if (isAuthenticated) {
+      navigate(path);
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <header className="bg-gradient-to-r from-blue-900 to-teal-500 p-4 flex items-center justify-between">
       <div className="flex items-center">
@@ -10,10 +21,10 @@ function Header() {
       </div>
       <nav className="flex space-x-4">
         <Link to="/" className="text-white">Home</Link>
-        <Link to="/listar" className="text-white">Lista de Profissionais</Link>
-        <Link to="/calendario" className="text-white">Calendário</Link>
-        <Link to="/createCampaign" className="text-white">Criar Campanha</Link>
-        <Link to="/createProfessional" className="text-white">Cadastrar Profissional</Link>
+        <button onClick={() => handleNavigation('/listar')} className="text-white">Lista de Profissionais</button>
+        <button onClick={() => handleNavigation('/calendario')} className="text-white">Calendário</button>
+        <button onClick={() => handleNavigation('/createCampaign')} className="text-white">Criar Campanha</button>
+        <button onClick={() => handleNavigation('/createProfessional')} className="text-white">Cadastrar Profissional</button>
       </nav>
     </header>
   );
