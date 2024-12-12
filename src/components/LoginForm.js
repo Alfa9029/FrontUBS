@@ -1,4 +1,3 @@
-// src/components/LoginForm.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axiosConfig";
@@ -23,14 +22,17 @@ function LoginForm({ setIsAuthenticated }) {
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 200 && response.data?.token) {
+        // Salvando somente se o token for válido
         localStorage.setItem("user", JSON.stringify(response.data));
         setIsAuthenticated(true);
-        navigate("/"); // Redirect to the home page after login
+        console.log("Login bem-sucedido. Usuário autenticado."); // Log para depuração
+        navigate("/"); // Redirecionar para a página inicial
       } else {
         alert("CNPJ ou senha incorretos!");
       }
     } catch (error) {
+      console.error("Erro no login:", error);
       if (error.response && error.response.status === 401) {
         alert("CNPJ ou senha incorretos!");
       } else {
@@ -42,15 +44,9 @@ function LoginForm({ setIsAuthenticated }) {
   return (
     <div className="w-full max-w-xs mx-auto">
       <h1 className="text-center text-2xl font-bold mb-6">Login UBS</h1>
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleLogin}
-      >
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleLogin}>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="cnpj"
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cnpj">
             CNPJ
           </label>
           <input
@@ -63,10 +59,7 @@ function LoginForm({ setIsAuthenticated }) {
           />
         </div>
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Senha
           </label>
           <input

@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
@@ -14,17 +13,14 @@ function App() {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    console.log("User found:", user); // Debugging log
-    setIsAuthenticated(!!user);
-
-    const handleStorageChange = () => {
-      const updatedUser = localStorage.getItem("user");
-      console.log("Updated User:", updatedUser); // Debugging log
-      setIsAuthenticated(!!updatedUser);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    try {
+      const parsedUser = JSON.parse(user);
+      setIsAuthenticated(!!parsedUser?.token); // Apenas autentica se o token estiver presente
+      console.log("Verificação do usuário no localStorage:", parsedUser);
+    } catch (error) {
+      console.error("Erro ao verificar o localStorage:", error);
+      setIsAuthenticated(false);
+    }
   }, []);
 
   return (
@@ -37,27 +33,15 @@ function App() {
             <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
             <Route
               path="/calendario"
-              element={
-                isAuthenticated 
-                  ? <Calendario /> 
-                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
-              }
+              element={isAuthenticated ? <Calendario /> : <Navigate to="/login" />}
             />
             <Route
               path="/createCampaign"
-              element={
-                isAuthenticated 
-                  ? <CreateCampaign /> 
-                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
-              }
+              element={isAuthenticated ? <CreateCampaign /> : <Navigate to="/login" />}
             />
             <Route
               path="/createProfessional"
-              element={
-                isAuthenticated 
-                  ? <CreateProfessional /> 
-                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
-              }
+              element={isAuthenticated ? <CreateProfessional /> : <Navigate to="/login" />}
             />
           </Routes>
         </main>
