@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Header from "./components/Header";
 import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
-import ListaProf from "./components/ListaProf";
 import Calendario from "./components/Calendario";
 import ListaUBS from "./components/ListaUBS";
 import CreateProfessional from "./components/CreateProfessional";
@@ -26,10 +25,6 @@ function App() {
           <Routes>
             <Route path="/" element={<ListaUBS />} />
             <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
-            <Route
-              path="/listar"
-              element={isAuthenticated ? <ListaProf /> : <Navigate to="/login" />}
-            />
             <Route
               path="/calendario"
               element={isAuthenticated ? <Calendario /> : <Navigate to="/login" />}

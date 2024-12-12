@@ -20,7 +20,6 @@ function Header({ isAuthenticated }) {
       </div>
       <nav className="flex space-x-4">
         <Link to="/" className="text-white">Home</Link>
-        <button onClick={() => handleNavigation('/listar')} className="text-white">Lista de Profissionais</button>
         <button onClick={() => handleNavigation('/calendario')} className="text-white">Calendário</button>
         <button onClick={() => handleNavigation('/createCampaign')} className="text-white">Criar Campanha</button>
         <button onClick={() => handleNavigation('/createProfessional')} className="text-white">Cadastrar Profissional</button>
