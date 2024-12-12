@@ -39,7 +39,7 @@ const CreateCampaign = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3001/api/ubs/${selectedUbsId}/campanhas`, // Correção da URL
+        `https://ubs-backend-pn16.onrender.com/api/ubs/${selectedUbsId}/campanhas`, // Correção da URL
         campaignData,
         {
           headers: {

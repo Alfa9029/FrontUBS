@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3001/api/ubs", // URL do backend
+  baseURL: " https://ubs-backend-pn16.onrender.com/api/ubs", // URL do backend
 });
 
 export default api;

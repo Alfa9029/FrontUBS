@@ -24,7 +24,7 @@ const CreateProfessional = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3001/api/ubs/1/medicos',
+        'https://ubs-backend-pn16.onrender.com/api/ubs/1/medicos',
         formData,
         {
           headers: {
