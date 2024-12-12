@@ -13,7 +13,7 @@ function Calendario() {
   useEffect(() => {
     const fetchCampanhas = async () => {
       try {
-        const response = await axios.get('https://ubs-backend-pn16.onrender.com/api/ubs/campanhas');
+        const response = await axios.get('https://ubs-backend-pn16.onrender.com/api/ubs/1/campanhas'); // Atualize o ID da UBS conforme necessário
         setCampanhas(response.data);
       } catch (error) {
         console.error('Erro ao buscar campanhas:', error);
