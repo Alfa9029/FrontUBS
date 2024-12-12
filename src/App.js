@@ -10,6 +10,7 @@ import Agenda from './components/Agenda';
 import Calendario from "./components/Calendario";
 import ListaUBS from "./components/ListaUBS";
 import CreateProfessional from "./components/CreateProfessional"; // Importar o novo componente
+import CreateCampaign from "./components/CreateCampaign"; // Certifique-se de que a capitalização está correta
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/listar" element={<ListaProf />} />
             <Route path="/calendario" element={<Calendario />} />
             <Route path="/ubs" element={<ListaUBS />} />
+            <Route path="/createCampaign" element={<CreateCampaign />} /> {/* Nova rota */}
             <Route path="/createProfessional" element={<CreateProfessional />} /> {/* Nova rota */}
           </Routes>
         </main>
