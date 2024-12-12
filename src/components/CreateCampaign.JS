@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CreateCampaign = () => {
@@ -10,6 +11,7 @@ const CreateCampaign = () => {
   });
 
   const [selectedUbsId, setSelectedUbsId] = useState(1);
+  const navigate = useNavigate();
 
   // Atualiza os dados no formulário conforme o usuário digita
   const handleChange = (e) => {
@@ -116,6 +118,20 @@ const CreateCampaign = () => {
             Criar Campanha
           </button>
         </form>
+        <div className="mt-4 flex justify-between">
+          <button
+            onClick={() => navigate('/calendario')}
+            className="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          >
+            Ver Calendário
+          </button>
+          <button
+            onClick={() => navigate('/')}
+            className="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          >
+            Voltar ao Início
+          </button>
+        </div>
       </div>
     </div>
   );
