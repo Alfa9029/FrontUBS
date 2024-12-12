@@ -1,11 +1,27 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CreateProfessional = () => {
   const [formData, setFormData] = useState({
     nome: '',
     especialidade: '',
   });
+  const [ubsList, setUbsList] = useState([]);
+  const [selectedUbsId, setSelectedUbsId] = useState('');
+
+  useEffect(() => {
+    // Fetch the list of UBS from the backend
+    const fetchUbsList = async () => {
+      try {
+        const response = await axios.get('https://ubs-backend-pn16.onrender.com/api/ubs');
+        setUbsList(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar UBS:', error);
+      }
+    };
+
+    fetchUbsList();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +40,7 @@ const CreateProfessional = () => {
 
     try {
       const response = await axios.post(
-        'https://ubs-backend-pn16.onrender.com/api/ubs/1/medicos',
+        `https://ubs-backend-pn16.onrender.com/api/ubs/${selectedUbsId}/medicos`,
         formData,
         {
           headers: {
@@ -82,6 +98,30 @@ const CreateProfessional = () => {
               required
               className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
+          </div>
+          {/* Seleção de UBS */}
+          <div>
+            <label
+              htmlFor="ubs"
+              className="block text-sm font-medium text-gray-600"
+            >
+              UBS
+            </label>
+            <select
+              id="ubs"
+              name="ubs"
+              value={selectedUbsId}
+              onChange={(e) => setSelectedUbsId(e.target.value)}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              <option value="">Selecione uma UBS</option>
+              {ubsList.map((ubs) => (
+                <option key={ubs.id} value={ubs.id}>
+                  {ubs.nome}
+                </option>
+              ))}
+            </select>
           </div>
           {/* Botão */}
           <div>
