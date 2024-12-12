@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
@@ -15,6 +14,14 @@ function App() {
   useEffect(() => {
     const user = localStorage.getItem("user");
     setIsAuthenticated(!!user);
+
+    const handleStorageChange = () => {
+      const updatedUser = localStorage.getItem("user");
+      setIsAuthenticated(!!updatedUser);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   return (
