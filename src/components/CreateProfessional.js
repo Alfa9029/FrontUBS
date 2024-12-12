@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import NavigationButton from './NavigationButton';
 
 const CreateProfessional = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ const CreateProfessional = () => {
   });
   const [ubsList, setUbsList] = useState([]);
   const [selectedUbsId, setSelectedUbsId] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch the list of UBS from the backend
@@ -171,6 +174,10 @@ const CreateProfessional = () => {
             </button>
           </div>
         </form>
+        <div className="mt-4 flex justify-between">
+          <NavigationButton text="Cadastrar Campanha" to="/createCampaign" />
+          <NavigationButton text="Ver Calendário" to="/calendario" />
+        </div>
       </div>
     </div>
   );
