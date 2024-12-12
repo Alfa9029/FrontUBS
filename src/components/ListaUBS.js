@@ -1,10 +1,8 @@
 // src/components/ListaUBS.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ListaUBS() {
-  const navigate = useNavigate();
   const [selectedUBS, setSelectedUBS] = useState(null);
   const [profissionais, setProfissionais] = useState([]);
 
@@ -94,14 +92,6 @@ function ListaUBS() {
       )}
 
       <img src="/b2.jpg" alt="Banner 2" className="mt-6" />
-
-      {/* Botão de Voltar */}
-      <button
-        onClick={() => navigate('/dashboard')}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 focus:outline-none"
-      >
-        Voltar ao Dashboard
-      </button>
     </div>
   );
 }

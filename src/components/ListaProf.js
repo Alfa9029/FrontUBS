@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../axiosConfig';
-import { useNavigate } from 'react-router-dom';
 
 function ListaProf() {
   const [profissionais, setProfissionais] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfissionais = async () => {
@@ -31,12 +29,6 @@ function ListaProf() {
       ) : (
         <p>Nenhum profissional encontrado.</p>
       )}
-      <button
-        onClick={() => navigate('/dashboard')}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 focus:outline-none"
-      >
-        Voltar ao Dashboard
-      </button>
     </div>
   );
 }
