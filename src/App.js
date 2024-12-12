@@ -6,7 +6,6 @@ import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import ListaProf from "./components/ListaProf";
-import Agenda from './components/Agenda';
 import Calendario from "./components/Calendario";
 import ListaUBS from "./components/ListaUBS";
 import CreateProfessional from "./components/CreateProfessional"; // Importar o novo componente
