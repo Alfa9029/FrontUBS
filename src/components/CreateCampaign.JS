@@ -39,11 +39,11 @@ const CreateCampaign = () => {
 
     try {
       const response = await axios.post(
-        `https://ubs-backend-pn16.onrender.com/api/ubs/${selectedUbsId}/campanhas`, // Correção da URL
+        `https://ubs-backend-pn16.onrender.com/api/ubs/${selectedUbsId}/campanhas`,
         campaignData,
         {
           headers: {
-            'Authorization': `Basic ${btoa('admin:senha123')}`, // Adicionando autenticação básica
+            'Authorization': `Basic ${btoa('admin:senha123')}`,
             'Content-Type': 'application/json',
           },
         }
@@ -58,54 +58,65 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div>
-      <h2>Criar Nova Campanha</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="nome">Nome da Campanha:</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            value={formData.nome}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="descricao">Descrição:</label>
-          <textarea
-            id="descricao"
-            name="descricao"
-            value={formData.descricao}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="data_inicio">Data de Início:</label>
-          <input
-            type="date"
-            id="data_inicio"
-            name="data_inicio"
-            value={formData.data_inicio}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="data_fim">Data de Fim:</label>
-          <input
-            type="date"
-            id="data_fim"
-            name="data_fim"
-            value={formData.data_fim}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Criar Campanha</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full bg-white p-8 border border-gray-200 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4 text-center text-gray-700">Criar Nova Campanha</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="nome" className="block text-sm font-medium text-gray-600">Nome da Campanha:</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="descricao" className="block text-sm font-medium text-gray-600">Descrição:</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              value={formData.descricao}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="data_inicio" className="block text-sm font-medium text-gray-600">Data de Início:</label>
+            <input
+              type="date"
+              id="data_inicio"
+              name="data_inicio"
+              value={formData.data_inicio}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="data_fim" className="block text-sm font-medium text-gray-600">Data de Fim:</label>
+            <input
+              type="date"
+              id="data_fim"
+              name="data_fim"
+              value={formData.data_fim}
+              onChange={handleChange}
+              required
+              className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Criar Campanha
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
