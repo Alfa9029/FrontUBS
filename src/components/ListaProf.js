@@ -7,7 +7,7 @@ function ListaProf() {
   useEffect(() => {
     const fetchProfissionais = async () => {
       try {
-        const response = await api.get('/medicos'); // Ajuste a URL conforme necessário
+        const response = await api.get('/1/medicos'); // Ajuste o ID da UBS conforme necessário
         setProfissionais(response.data);
       } catch (error) {
         console.error('Erro ao buscar profissionais:', error);
