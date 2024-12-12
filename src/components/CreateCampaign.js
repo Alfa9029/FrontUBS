@@ -53,6 +53,7 @@ const CreateCampaign = () => {
 
       alert('Campanha criada com sucesso!');
       console.log('Resposta da criação:', response.data);
+      navigate('/calendario');
     } catch (error) {
       console.error('Erro ao criar campanha:', error.response?.data || error.message);
       alert('Erro ao criar campanha. Tente novamente.');
