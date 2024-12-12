@@ -10,7 +10,7 @@ import Agenda from './components/Agenda';
 import Calendario from "./components/Calendario";
 import ListaUBS from "./components/ListaUBS";
 import CreateProfessional from "./components/CreateProfessional"; // Importar o novo componente
-import CreateCampaign from "./components/CreateCampaign.JS"; // Certifique-se de que a capitalização está correta
+import CreateCampaign from "./components/CreateCampaign"; // Certifique-se de que a capitalização está correta
 
 function App() {
   return (
