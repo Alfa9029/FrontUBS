@@ -12,6 +12,8 @@ function LoginForm({ setIsAuthenticated }) {
 
     try {
       const credentials = btoa(`${cnpj}:${password}`);
+      console.log("Enviando credenciais:", credentials); // Log para verificar as credenciais
+
       const response = await api.post(
         "/login",
         {},
@@ -22,19 +24,24 @@ function LoginForm({ setIsAuthenticated }) {
         }
       );
 
+      console.log("Resposta da API:", response); // Log para verificar a resposta da API
+
       if (response.status === 200 && response.data?.token) {
-        // Salvando somente se o token for válido
         localStorage.setItem("user", JSON.stringify(response.data));
         setIsAuthenticated(true);
-        console.log("Login bem-sucedido. Usuário autenticado."); // Log para depuração
+        console.log("Login bem-sucedido. Usuário autenticado.");
         navigate("/"); // Redirecionar para a página inicial
       } else {
+        console.warn("Credenciais inválidas. Verifique CNPJ e senha.");
         alert("CNPJ ou senha incorretos!");
       }
     } catch (error) {
-      console.error("Erro no login:", error);
+      console.error("Erro ao realizar login:", error);
+
       if (error.response && error.response.status === 401) {
         alert("CNPJ ou senha incorretos!");
+      } else if (error.response) {
+        alert(`Erro ${error.response.status}: ${error.response.data?.message || "Desconhecido"}`);
       } else {
         alert("Erro de conexão com o servidor.");
       }
