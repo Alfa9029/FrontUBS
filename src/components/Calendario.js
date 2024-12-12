@@ -61,7 +61,7 @@ function Calendario() {
       {/* Sidebar */}
       <div className="bg-gray-200 w-1/4 p-6">
         <Link
-          to="/agenda"
+          to="/createCampaign"
           className="w-full py-3 mb-4 text-center text-xl font-semibold bg-white rounded-md hover:bg-gray-300 block"
         >
           Registrar Campanha
