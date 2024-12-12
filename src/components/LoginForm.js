@@ -24,7 +24,7 @@ function LoginForm() {
 
             if (response.status === 200) {
                 localStorage.setItem("user", JSON.stringify(response.data));
-                navigate("/"); // Redirecionar para a página inicial após o login
+                navigate("/createCampaign"); // Alterado para redirecionar para a página de criação de campanha
             } else {
                 alert("CNPJ ou senha incorretos!");
             }
