@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
@@ -13,10 +14,12 @@ function App() {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
+    console.log("User found:", user); // Debugging log
     setIsAuthenticated(!!user);
 
     const handleStorageChange = () => {
       const updatedUser = localStorage.getItem("user");
+      console.log("Updated User:", updatedUser); // Debugging log
       setIsAuthenticated(!!updatedUser);
     };
 
@@ -34,15 +37,27 @@ function App() {
             <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
             <Route
               path="/calendario"
-              element={isAuthenticated ? <Calendario /> : <Navigate to="/login" />}
+              element={
+                isAuthenticated 
+                  ? <Calendario /> 
+                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
+              }
             />
             <Route
               path="/createCampaign"
-              element={isAuthenticated ? <CreateCampaign /> : <Navigate to="/login" />}
+              element={
+                isAuthenticated 
+                  ? <CreateCampaign /> 
+                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
+              }
             />
             <Route
               path="/createProfessional"
-              element={isAuthenticated ? <CreateProfessional /> : <Navigate to="/login" />}
+              element={
+                isAuthenticated 
+                  ? <CreateProfessional /> 
+                  : (() => { console.log("Redirecting to /login"); return <Navigate to="/login" /> })()
+              }
             />
           </Routes>
         </main>

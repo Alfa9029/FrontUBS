@@ -1,3 +1,4 @@
+// src/components/LoginForm.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../axiosConfig";
@@ -25,7 +26,7 @@ function LoginForm({ setIsAuthenticated }) {
       if (response.status === 200) {
         localStorage.setItem("user", JSON.stringify(response.data));
         setIsAuthenticated(true);
-        navigate("/"); // Redirecionar para a página inicial após o login
+        navigate("/"); // Redirect to the home page after login
       } else {
         alert("CNPJ ou senha incorretos!");
       }
